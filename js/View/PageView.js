@@ -10,6 +10,7 @@ define(["../observer/event"], function(Event){
 		this.childrenModified = new Event(this);
 		this.addButtonClicked = new Event(this);
 		this.removeButtonClicked = new Event(this);
+		this.dropReceived = new Event(this);
 
 		// To change the ownership of the method
 		var _this = this;
@@ -37,6 +38,23 @@ define(["../observer/event"], function(Event){
 				_this.removeButtonClicked.notify();
 			}
 		);
+
+		this._element.domElement.addEventListener("dragover", function(event) {
+   		 event.preventDefault();
+		});
+
+		this._element.domElement.addEventListener('drop', function(event) {
+			event.preventDefault();
+			console.log("drop intercepted")
+			console.log(event.target.tagName);
+		});
+		/**this._element.domElement.addEventListener('drop', 
+			function(event) {
+				event.preventDefault();
+				console.log("droppped view")
+				_this.dropReceived.notify();
+			}
+		);*/
 
 
 	}

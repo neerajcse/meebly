@@ -2,4 +2,7 @@ body {
   background-color: azure;
   font: helvetica; }
 
+ul li {
+  background-color: green; }
+
 /*# sourceMappingURL=style.css.map */

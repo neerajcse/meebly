@@ -1,11 +1,77 @@
-$background: azure
-$font: helvetica
+@font-face
+	font-family: WeeblyWeb
+	src: url("Font/VAGRoundedStd-Light.otf") format("opentype")
+
+@font-face
+	font-family: WidgetHeaderFont
+	src: url("Font/ProximaNova-SBold.otf") format("opentype")
+
+
+$background: #FFFFFF
+$font: WeeblyWeb
 $listcolor : green
 
+
+$header-color: #518DCA
+$header-height: 35px
+
+
+$logo-height: 39px
+$logo-width: 39px
+$logo-padding: 20px
+
+
+$side-background-color: #2C3E50
+$side-width: 200px
+$side-height: 90%
+
+
+html
+	height: 100%
+
 body
-  background-color: $background
-  font: $font
+	background-color: $background
+	height: 100%
+	font-family: $font
+	padding: 0px
+	margin: 0px
+
+.header
+	background-color: $header-color
+	height: $header-height
+	clear: both
+
+.weebly-logo
+	height: $logo-height
+	width: $logo-width
+	padding-left: $logo-padding
+
+.side-toolbox
+	width: $side-width
+	height: $side-height
+	background: $side-background-color
+	float: left
+	display: inline
+	.side-widget
+		height: auto
+		.widget-header
+			background-color: #4F657B
+			height: 20px
+			font-family: WidgetHeaderFont
+			font-size: 10pt
+			color: #879EB4
+			text-align: center
+			vertical-align: middle
+			padding-top: 3px
+
+
+.page-container
+	width: auto
+	float: left
+	height: $side-height
+
+
 
 ul
-  li
-    background-color: $listcolor
+	li
+		background-color: $listcolor

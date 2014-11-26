@@ -25,11 +25,12 @@ body {
   padding-left: 20px; }
 
 .side-toolbox {
-  width: 200px;
+  width: 160px;
   height: 90%;
   background: #2C3E50;
   float: left;
-  display: inline; }
+  display: inline;
+  box-shadow: inset 0 0 10px #000000; }
   .side-toolbox .side-widget {
     height: auto; }
     .side-toolbox .side-widget .widget-header {
@@ -40,14 +41,51 @@ body {
       color: #879EB4;
       text-align: center;
       vertical-align: middle;
-      padding-top: 3px; }
+      padding-top: 3px;
+      box-shadow: -2px 2px 2px 1px #1F2E3C; }
+    .side-toolbox .side-widget .widget-content .widget-element {
+      width: 78px;
+      display: inline;
+      float: left;
+      height: 85px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid #21313F; }
+      .side-toolbox .side-widget .widget-content .widget-element .element-icon {
+        background-image: url("Sprites/Element-Icons.png");
+        width: 55px;
+        height: 65px;
+        margin-left: auto;
+        margin-right: auto; }
+      .side-toolbox .side-widget .widget-content .widget-element .element-label {
+        font-size: 12px;
+        color: #879EB4; }
+
+.elements-widget .widget-content {
+  height: 175px; }
+
+.pages-widget .widget-content {
+  height: 50px; }
+
+.settings-widget .widget-content {
+  height: 50px; }
+
+.widget-element .title {
+  background-position-x: -6px; }
+
+.widget-element .text {
+  background-position-x: -62px; }
+
+.widget-element .image {
+  background-position-x: -115px; }
+
+.widget-element .nav {
+  background-position-x: -170px; }
 
 .page-container {
   width: auto;
   float: left;
   height: 90%; }
-
-ul li {
-  background-color: green; }
 
 /*# sourceMappingURL=style.css.map */

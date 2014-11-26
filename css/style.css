@@ -72,16 +72,16 @@ body {
   height: 50px; }
 
 .widget-element .title {
-  background-position-x: -6px; }
+  background-position: 4%; }
 
 .widget-element .text {
-  background-position-x: -62px; }
+  background-position: 35%; }
 
 .widget-element .image {
-  background-position-x: -115px; }
+  background-position: 65%; }
 
 .widget-element .nav {
-  background-position-x: -170px; }
+  background-position: 96%; }
 
 .page-container {
   width: auto;

@@ -75,7 +75,7 @@ define(["../observer/event"], function(Event){
 				domElement.innerHTML += '<li>' +  children[child] + '</li>';
 			}
 		}
-	}
+	};
 
 	return PageView;
 });

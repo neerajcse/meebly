@@ -6,6 +6,11 @@
 	font-family: WidgetHeaderFont
 	src: url("Font/ProximaNova-Sbold.otf") format("opentype")
 
+@mixin user-select($selectable)
+	-moz-user-select: $selectable
+	-khtml-user-select: $selectable
+	-webkit-user-select: $selectable
+	user-select: $selectable
 
 $background: #FFFFFF
 $font: WeeblyWeb
@@ -81,9 +86,12 @@ body
 					height: 65px
 					margin-left: auto
 					margin-right: auto
+					cursor: move
 				.element-label
 					font-size: 12px
 					color: #879EB4
+					cursor: context-menu
+					@include user-select(none)
 				
 
 .elements-widget
@@ -111,13 +119,15 @@ body
 .widget-element .nav
 	background-position: 96%
 
-
-
-
-
 .page-container
 	width: auto
 	float: left
 	height: $side-height
 
-
+#add-page-button #name-field
+	background: none
+	border: 2px solid white
+	border-radius: 5px
+	padding: 4px
+	width: 80%
+	margin: 5px

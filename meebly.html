@@ -3,7 +3,9 @@
 <html>
 <head>
 	<title>Meebly: Mini Weebly</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="sass/body.css">
+	<script type="text/javascript" data-main="js/main.js" src="js/require.js">
+	</script>
 </head>
 <body>
 	<div class="header" style="background-color:#518DCA">
@@ -14,7 +16,12 @@
 			<div class="widget-header">
 				TEMPLATES
 			</div>
-			<div class="widget-content">
+			<div id="templates-widget" class="widget-content">
+				
+			</div>
+			<div id="add-page-button">
+				<input id="name-field" readonly="true" placeholder="Add New Page"/>
+				<image id="add-button"></image>
 			</div>
 		</div>
 		<div class="side-widget elements-widget" >
@@ -23,19 +30,19 @@
 			</div>
 			<div class="widget-content">
 				<div class="widget-element">
-					<div class="element-icon title"></div>
+					<div class="element-icon title" draggable="true"></div>
 					<span class="element-label">TITLE</span>
 				</div>
 				<div class="widget-element">
-					<div class="element-icon text"></div>
+					<div class="element-icon text" draggable="true"></div>
 					<span class="element-label">TEXT</span>
 				</div>
 				<div class="widget-element">
-					<div class="element-icon image"></div>
+					<div class="element-icon image" draggable="true"></div>
 					<span class="element-label">IMAGE</span>
 				</div>
 				<div class="widget-element">
-					<div class="element-icon nav"></div>
+					<div class="element-icon nav" draggable="true"></div>
 					<span class="element-label">NAV</span>
 				</div>
 			</div>
@@ -48,7 +55,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="page-container">
+	<div id="container" class="page-container">
 	</div>
 </body>
 </html>

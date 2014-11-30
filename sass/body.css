@@ -57,10 +57,16 @@ body {
         width: 55px;
         height: 65px;
         margin-left: auto;
-        margin-right: auto; }
+        margin-right: auto;
+        cursor: move; }
       .side-toolbox .side-widget .widget-content .widget-element .element-label {
         font-size: 12px;
-        color: #879EB4; }
+        color: #879EB4;
+        cursor: context-menu;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none; }
 
 .elements-widget .widget-content {
   height: 175px; }
@@ -88,4 +94,12 @@ body {
   float: left;
   height: 90%; }
 
-/*# sourceMappingURL=style.css.map */
+#add-page-button #name-field {
+  background: none;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 4px;
+  width: 80%;
+  margin: 5px; }
+
+/*# sourceMappingURL=body.css.map */

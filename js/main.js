@@ -1,13 +1,15 @@
-require(["observer/event", "Model/PageModel", "View/PageView", "Controller/PageController"], 
-	function(Event, PageModel, PageView, PageController){
-	var model = new PageModel(['test']);
-	var element = {
-		'domElement' : document.getElementById("myUl"),
-		'addButton' : document.getElementById("myPlusButton"),
-		'removeButton': document.getElementById("myMinusButton"),
-	};
-	var view = new PageView(model, element);
-	var controller = new PageController(model, view);
+require(["observer/event", "Model/SiteModel", "View/SiteView", "Controller/SiteController", "View/TemplateButtonView"], 
+	function(Event, SiteModel, SiteView, SiteController, TemplateButtonView){
+		var model = new SiteModel([{id: 'test'}]);
+		var element = {
+			'domElement' : document.getElementById("container"),
+			'sideBarWidget' : document.getElementById("templates-widget"),
+		};
 
-	view.show();
+		var view = new SiteView(model, element);
+		var controller = new SiteController(model, view);
+
+		view.show();
+		view.addPageInView({ id: '1' });
+		view.addPageInView({ id: '2' });
 });

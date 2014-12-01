@@ -9,29 +9,20 @@ define(["../observer/event"], function(Event){
 
 		var _this = this;
 
-		this._nameField.addEventListener('click', function() {
-			_this.makeNameFieldEditable();
-		});
-
+		console.log("Initializing add button");
 		this._addButton.addEventListener('click', function(){
-			_this.ifEditableSendAddRequestAndDisable();
+			_this.notifyIfNotEmpty();
+			_this._nameField.value = "";
 		});
 	}
 
 	TemplateButtonView.prototype = {
-		makeNameFieldEditable: function() {
-			_this._nameField.readOnly = false;
-		},
 
-		ifEditableSendAddRequestAndDisable: function() {
-			if (_this._nameField.readOnly) {
-				_this.pageAdded.notify({ title: _this._nameField.value });
-				console.log("Triggering event with " + _this._nameField.value);
-				_this._nameField.value = "";
-				_this._nameField.readOnly = true;
-
-			}
-			
+		notifyIfNotEmpty: function() {
+			if (this._nameField.value == "") return;
+			val = this._nameField.value;
+			this.pageAdded.notify({ title: val, id: val });
+			console.log("Triggering event with " + val);
 		}
 	};
 

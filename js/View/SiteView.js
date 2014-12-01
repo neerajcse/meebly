@@ -2,14 +2,15 @@ define(["../observer/event"], function(Event){
 	function SiteView(sitemodel, element, addButton) {
 		this._model = sitemodel;
 		this._element = element;
+		this._addButton = addButton;
 
 		this.pageAdded = new Event(this);
 		this.pageRemoved = new Event(this);
 
 		var _this = this;
 
-		this.addButton.pageAdded.attach(function(e) {
-			console.log("Received event " + e.title);
+		_this._addButton.pageAdded.attach(function(target, e) {
+			_this.addPageInView(e);
 		});
 	}
 

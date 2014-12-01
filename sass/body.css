@@ -94,12 +94,39 @@ body {
   float: left;
   height: 90%; }
 
-#add-page-button #name-field {
-  background: none;
+#add-page-button {
   border: 2px solid white;
   border-radius: 5px;
-  padding: 4px;
-  width: 80%;
-  margin: 5px; }
+  margin: auto;
+  margin-bottom: 10px;
+  width: 80%; }
+  #add-page-button .holder {
+    width: 80%;
+    display: inline;
+    float: left; }
+    #add-page-button .holder #name-field {
+      background: none;
+      border: 0px none;
+      padding: 4px;
+      width: 100%;
+      margin: 5px;
+      color: white; }
+    #add-page-button .holder #name-field:focus {
+      outline: 0; }
+  #add-page-button #add-button {
+    background-image: url("Sprites/Add-Delete-Edit-Icons.png");
+    width: 20px;
+    height: 20px;
+    background-position: 15% 50%;
+    vertical-align: middle;
+    border: 0px none;
+    float: left;
+    margin-top: 8px; }
+
+#add-page-button:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both; }
 
 /*# sourceMappingURL=body.css.map */

@@ -19,19 +19,16 @@ define(["../observer/event"], function(Event){
 		});
 
 		this._editButton.addEventListener('click', function() {
-			//_this.notifyIfNotEmpty();
+			_this.notifyIfNotEmpty();
 		});
 
-		this._nameField.addEventListener('keypress', function(e){
-			
-		});
 	}
 
 	EditButtonView.prototype = {
 		notifyIfNotEmpty: function() {
 			if (this._nameField.value == "") return;
 			val = this._nameField.value;
-			this.pageTitleEdited.notify(val);
+			this.pageTitleEdited.notify({title:val, id: this._pageId});
 			console.log("Triggering edit event with " + val);
 		},
 		deleteHandler: function() {

@@ -14,6 +14,16 @@ define(["../observer/event"], function(Event) {
 			_this.addPage(args);
 		});
 
+		//Observer the view for removals.
+		this._view.pageRemoved.attach(function(sender, args) {
+			console.log("Cont: Received page remove id:" + args);
+			_this.removePage(args);
+		});
+
+		this._view.pageEdited.attach(function(sender, args) {
+			_this.editPage(args);
+		});
+
 		/**
 		this._view.addButtonClicked.attach(function(){
 			_this.addChild();
@@ -46,7 +56,16 @@ define(["../observer/event"], function(Event) {
 		},**/
 		addPage: function(page) {
 			this._model.addPage(page);
+		},
+
+		removePage: function(pageId) {
+			this._model.removePageWithID(pageId);
+		},
+
+		editPage: function(args) {
+			this._model.editPage(args);
 		}
+
 
 	};
 

@@ -6,6 +6,7 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 
 		this.pageAdded = new Event(this);
 		this.pageRemoved = new Event(this);
+		this.pageEdited = new Event(this);
 
 		this._buttonViews = [];
 
@@ -19,6 +20,23 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 		_this._model.pageAdded.attach(function(source, e){
 			_this.addPageInView(e);
 		});
+
+		_this._model.pageRemoved.attach(function(source, e){
+			for (var i = _this._buttonViews.length - 1; i >= 0; i--) {
+			    if (_this._buttonViews[i] === e) {
+			        _this._buttonViews.splice(i, 1);
+			        break;
+			    }
+			}
+			console.log("removed from view.Rerendering " + _this._buttonViews);
+			_this.removePagebyId(e);
+		});
+
+		_this._model.pageEdited.attach(function(source, e){
+			console.log("Received event from model for edit page");
+			_this.editPageWithId(e);
+		});
+
 	}
 
 	SiteView.prototype = {
@@ -50,6 +68,17 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 				   '</div>';
 		},
 
+		editPageWithId: function(args) {
+			console.log("updating view : " + args.id);
+			document.getElementById('page-' + args.id).innerHTML = args.title;
+		},
+
+		removePagebyId: function(pageId) {
+			document.getElementById('rembutton-' + pageId).remove();
+			document.getElementById('page-' + pageId).remove();
+			sideBarWidget.style.height = sideBarWidget.offsetHeight - 30 + "px";
+		},
+
 		addPageInView: function(page) {
 			domElement = this._element.domElement;
 			sideBarWidget = this._element.sideBarWidget;
@@ -75,6 +104,7 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 				});
 
 				editButtonView.pageTitleEdited.attach(function(source, args) {
+					console.log("View recieved edit event" + args);
 					_this.editPageTitle(args.id, args.title);
 				});
 			}
@@ -83,10 +113,12 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 
 		removePageFromView: function(pageId) {
 			console.log("Page remove notification for "  + pageId);
+			this.pageRemoved.notify(pageId);
 		},
 
 		editPageTitle: function(pageId, pageTitle) {
 			console.log("New page title for " + pageId + " is " + pageTitle);
+			this.pageEdited.notify({id: pageId, title:pageTitle});
 		}
 	};
 

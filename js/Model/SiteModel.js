@@ -27,9 +27,10 @@ define(["../observer/event"], function(Event){
 			this._pages.push(page);
 
 			// Send the notifications to controller/view/DAO
-			this.pageAdded.notify({element: page});
+			this.pageAdded.notify(page);
 
-			this.modelUpdated.notify({type:"site", pages: getPages()});
+			this.modelUpdated.notify({type:"site",
+			 pages: this.getPages()});
 		},
 
 		removePageAtPosition: function(position) {

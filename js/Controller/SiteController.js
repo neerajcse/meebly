@@ -6,12 +6,15 @@ define(["../observer/event"], function(Event) {
 
 		var _this = this;
 
-		/**
+		
 		// Observe the view
 		this._view.pageAdded.attach(function(sender, args) {
-
+			console.log("Got page add event from view " + args);
+			args.id = new Date().getUTCMilliseconds();
+			_this.addPage(args);
 		});
 
+		/**
 		this._view.addButtonClicked.attach(function(){
 			_this.addChild();
 		});
@@ -41,6 +44,9 @@ define(["../observer/event"], function(Event) {
 				this._model.removeChildAtPosition(0);
 			}
 		},**/
+		addPage: function(page) {
+			this._model.addPage(page);
+		}
 
 	};
 

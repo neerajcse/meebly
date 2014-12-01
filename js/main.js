@@ -11,7 +11,8 @@ require(["observer/event", "Model/SiteModel", "View/SiteView", "Controller/SiteC
 
 		var model = new SiteModel([]);
 		var element = {
-			'domElement' : document.getElementById("container"),
+			'domElement' : document.getElementById("page-contents"),
+			'pageTabs' : document.getElementById("page-tabs"),
 			'sideBarWidget' : document.getElementById("templates-widget"),
 		};
 

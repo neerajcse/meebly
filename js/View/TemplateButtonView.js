@@ -10,10 +10,22 @@ define(["../observer/event"], function(Event){
 		var _this = this;
 
 		console.log("Initializing add button");
+		
 		this._addButton.addEventListener('click', function(){
 			_this.notifyIfNotEmpty();
 			_this._nameField.value = "";
 		});
+
+		this._nameField.addEventListener('keypress', function(e){
+			var key = e.which || e.keyCode;
+    		if (key == 13) {
+    			e.preventDefault();
+    			_this.notifyIfNotEmpty();
+				_this._nameField.value = "";	
+    		} 
+			
+		});
+
 	}
 
 	TemplateButtonView.prototype = {

@@ -7,6 +7,8 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 		this.pageAdded = new Event(this);
 		this.pageRemoved = new Event(this);
 
+		this._buttonViews = [];
+
 		var _this = this;
 
 		_this._addButton.pageAdded.attach(function(source, e) {
@@ -61,20 +63,22 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 
 			//These button will have remove/edit options. Listen for those events.
 			var _this = this;
-			var element = {
-				'pageID' : page.id,
-				'nameField' : document.getElementById('title-' + page.id),
-				'editButton' : document.getElementById('edit-' + page.id),
-				'deleteButton' : document.getElementById('delete-' + page.id),
-			};
-			var editButtonView = new EditButtonView(element);
-			editButtonView.pageRemoved.attach(function(source, args){
-				_this.removePageFromView(args);
-			});
+			
+			this._buttonViews.push(page.id);
+			
+			
+			for(var id in this._buttonViews) {
 
-			editButtonView.pageTitleEdited.attach(function(source, args) {
-				_this.editPageTitle(args.id, args.title);
-			});
+				var editButtonView = new EditButtonView({'pageID' : this._buttonViews[id]});
+				editButtonView.pageRemoved.attach(function(source, args){
+					_this.removePageFromView(args);
+				});
+
+				editButtonView.pageTitleEdited.attach(function(source, args) {
+					_this.editPageTitle(args.id, args.title);
+				});
+			}
+			
 		},
 
 		removePageFromView: function(pageId) {

@@ -2,9 +2,9 @@ define(["../observer/event"], function(Event){
 	function EditButtonView(element) {
 		this._element = element;
 		this._pageId = element.pageID;
-		this._nameField = element.nameField;
-		this._deleteButton = element.deleteButton;
-		this._editButton = element.editButton;
+		this._nameField = document.getElementById('title-' + this._pageId);
+		this._deleteButton = document.getElementById('delete-' + this._pageId);
+		this._editButton = document.getElementById('edit-' + this._pageId);
 		
 
 		this.pageRemoved = new Event(this);
@@ -12,11 +12,10 @@ define(["../observer/event"], function(Event){
 
 		var _this = this;
 
-		console.log("Initializing add button" + this._pageId);
+		console.log("Initializing add button" + this._pageId + "on " + this);
 		
-		this._deleteButton.addEventListener('click', function(){
-			console.log("Remove event for " + _this._pageId);
-			_this.pageRemoved.notify(_this._pageId);
+		this._deleteButton.addEventListener('click', function() {
+			_this.deleteHandler();
 		});
 
 		this._editButton.addEventListener('click', function() {
@@ -34,6 +33,11 @@ define(["../observer/event"], function(Event){
 			val = this._nameField.value;
 			this.pageTitleEdited.notify(val);
 			console.log("Triggering edit event with " + val);
+		},
+		deleteHandler: function() {
+			console.log("Handling delete");
+			console.log("Remove event for " + this._pageId);
+			this.pageRemoved.notify(this._pageId);
 		}
 	};
 

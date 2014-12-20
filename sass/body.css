@@ -93,6 +93,10 @@ body {
   width: auto;
   float: left;
   height: 90%; }
+  .page-container #page-contents div.notselected {
+    display: none; }
+  .page-container #page-contents div.selected {
+    display: block; }
 
 #add-page-button {
   border: 2px solid white;
@@ -173,5 +177,23 @@ body {
   display: block;
   height: 0;
   clear: both; }
+
+#page-tabs-div ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center; }
+
+#page-tabs-div ul li {
+  display: inline;
+  min-width: 40px;
+  padding: 0px 20px 0px 20px;
+  height: 20px;
+  border: 1px solid;
+  margin: 10px; }
+
+#page-tabs-div ul li:hover {
+  color: #fff;
+  background-color: #369; }
 
 /*# sourceMappingURL=body.css.map */

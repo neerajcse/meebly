@@ -21,7 +21,7 @@ define(["../observer/event"], function(Event){
     		if (key == 13) {
     			e.preventDefault();
     			_this.notifyIfNotEmpty();
-				_this._nameField.value = "";	
+				_this._nameField.value = "";
     		} 
 			
 		});

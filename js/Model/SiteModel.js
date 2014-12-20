@@ -2,6 +2,8 @@ define(["../observer/event"], function(Event){
 	
 	function SiteModel(pages) {
 
+		this.modelType = "site";
+
 		// List of children should be stored in the model
 		// for pesistence.
 		this._pages = pages;
@@ -33,7 +35,7 @@ define(["../observer/event"], function(Event){
 			// Send the notifications to controller/view/DAO
 			this.pageAdded.notify(page);
 
-			this.modelUpdated.notify({type:"site",
+			this.modelUpdated.notify({type:this.modelType,
 			 pages: this.getPages()});
 		},
 

@@ -3,6 +3,8 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 		this._model = sitemodel;
 		this._element = element;
 		this._addButton = addButton;
+		console.log(this._element.pageTabs);
+		//this._element.pageTabs.innerHTML += "Hello world";
 
 		this.pageAdded = new Event(this);
 		this.pageRemoved = new Event(this);
@@ -53,6 +55,11 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 			}
 		},
 
+		generateHTMLForTab: function(page) {
+			console.log("Generating html for tab " + page.id)
+			return '<li id="page-tab-' + page.id + '">' + page.title + '</li>';
+		},
+
 		generateHTMLForPage: function(page) {
 			return '<div id="page-' + page.id +
 					'">New page with title' + page.title + '</div>'; 
@@ -70,13 +77,33 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 
 		editPageWithId: function(args) {
 			console.log("updating view : " + args.id);
-			document.getElementById('page-' + args.id).innerHTML = args.title;
+			document.getElementById('page-tab-' + args.id).innerHTML = args.title;
 		},
 
 		removePagebyId: function(pageId) {
 			document.getElementById('rembutton-' + pageId).remove();
 			document.getElementById('page-' + pageId).remove();
+			document.getElementById('page-tab-' + pageId).remove();
 			sideBarWidget.style.height = sideBarWidget.offsetHeight - 30 + "px";
+		},
+
+		showTabWithId: function(pageId) {
+			for(var id in this._buttonViews) {
+				document.getElementById("page-" + this._buttonViews[id]).className = 
+					document.getElementById("page-" + this._buttonViews[id]).className.replace(" selected", "").replace(" notselected", "");
+				document.getElementById("page-tab-" + this._buttonViews[id]).className = 
+					document.getElementById("page-tab-" + this._buttonViews[id]).className.replace(" selected", "").replace(" notselected", "");
+					
+				document.getElementById("page-" + this._buttonViews[id]).className+= " notselected";
+				document.getElementById("page-tab-" + this._buttonViews[id]).className+= " notselected";				
+
+			}
+			document.getElementById("page-" + pageId).className = 
+				document.getElementById("page-" + pageId).className.replace(" notselected", " selected");
+			document.getElementById("page-tab-" + pageId).className = 
+				document.getElementById("page-tab-" + pageId).className.replace(" notselected", " selected");
+				
+			
 		},
 
 		addPageInView: function(page) {
@@ -86,6 +113,12 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 
 			domElement.innerHTML += 
 				this.generateHTMLForPage(page);
+			var newTab = this.generateHTMLForTab(page);
+			console.log("HTML for new tab is " + newTab)
+			this._element.pageTabs.innerHTML += newTab;
+			id = page.id;
+			
+				
 			sideBarWidget.innerHTML += 
 				this.generateButtonForSideWidget(page);
 			sideBarWidget.style.height = sideBarWidget.offsetHeight + 30 + "px";
@@ -97,7 +130,6 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 			
 			
 			for(var id in this._buttonViews) {
-
 				var editButtonView = new EditButtonView({'pageID' : this._buttonViews[id]});
 				editButtonView.pageRemoved.attach(function(source, args){
 					_this.removePageFromView(args);
@@ -107,7 +139,15 @@ define(["../observer/event", "../View/EditButtonView"], function(Event, EditButt
 					console.log("View recieved edit event" + args);
 					_this.editPageTitle(args.id, args.title);
 				});
+
+				document.getElementById('page-tab-'+ this._buttonViews[id]).addEventListener('click', function() {
+					pageId = this.id.split("-")[2];
+					_this.showTabWithId(pageId);
+					console.log("Clicked page tab with id " + pageId)
+				});
 			}
+
+			this.showTabWithId(page.id);
 			
 		},
 

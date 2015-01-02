@@ -27,14 +27,24 @@ define(["../observer/event"], function(Event){
 		},
 
 		addPage: function(page) {
+			// Get the ID of the latest page according 
+			// to the last page id existingin the database.
+			page_id = this._dao.getNewPageId();
+			page.id = page_id;
+
 			this._pages[page.id] = page;
 			console.log("Updated model:");
+
 			for(var key in this._pages) {
 				console.log("Key:" + key + "value:" + this._pages[key]);
 			}
+
 			// Send the notifications to controller/view/DAO
 			this.pageAdded.notify(page);
 
+			// Will be used when multiple people are trying 
+			// to edit the pages of a single account at the
+			// same time. Like a push notification.
 			this.modelUpdated.notify({type:this.modelType,
 			 pages: this.getPages()});
 		},
@@ -55,7 +65,16 @@ define(["../observer/event"], function(Event){
 
 			this.modelUpdated.notify({type:"site", 
 				pages: this.getPages()});
-		}
+		},
+
+		registerDAO: function(dao_object) {
+			this._dao = dao_object;
+			json_pages = JSON.parse(this._dao.getPages()).pages;
+			for(var page in json_pages) {
+				console.log(json_pages[page].title + "::" + json_pages[page].id);
+				this._pages[json_pages[page].id] = json_pages[page];
+			}
+		},
 
 	};
 

@@ -1,5 +1,5 @@
-require(["observer/event", "Model/SiteModel", "View/SiteView", "Controller/SiteController", "View/TemplateButtonView"], 
-	function(Event, SiteModel, SiteView, SiteController, TemplateButtonView){
+require(["observer/event", "Model/SiteModel", "View/SiteView", "Controller/SiteController", "View/TemplateButtonView" ,"Stub/DAO"], 
+	function(Event, SiteModel, SiteView, SiteController, TemplateButtonView, DAO){
 		
 		var addButtonElement = {
 			'nameField' : document.getElementById('name-field'),
@@ -10,6 +10,7 @@ require(["observer/event", "Model/SiteModel", "View/SiteView", "Controller/SiteC
 
 
 		var model = new SiteModel([]);
+		var dao = new DAO("/", model);
 		var element = {
 			'domElement' : document.getElementById("page-contents"),
 			'pageTabs' : document.getElementById("page-tabs"),

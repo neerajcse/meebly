@@ -65,10 +65,7 @@ define(["../observer/event"], function(Event) {
 		editPage: function(args) {
 			this._model.editPage(args);
 		}
-
-
 	};
 
 	return SiteController;
-	
 });
